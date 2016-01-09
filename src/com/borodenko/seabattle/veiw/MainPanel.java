@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
+import com.borodenko.seabattle.constants.VeiwConstants;
 import com.borodenko.seabattle.model.Cell;
 
 public class MainPanel extends JPanel{
@@ -15,8 +16,9 @@ public class MainPanel extends JPanel{
 	private int sizeHeight;
 	private JPanel fieldOfTurnsPanel;
 	private JPanel fieldOfShipsPanel;
-	private final int FIELD_PANEL_SIZE_WIDTH = 350;
-	private final int FIELD_PANEL_SIZE_HEIGHT = 350;
+	
+
+	
 	
 	public MainPanel(int sizeWidth, int sizeHeight, 
 			Set<Cell>fieldOfTurns, Set<Cell>fieldOfShips){
@@ -25,11 +27,11 @@ public class MainPanel extends JPanel{
 		this.sizeHeight = sizeHeight;
 		this.setPreferredSize(new Dimension(sizeWidth, sizeHeight));
 		this.setBackground(Color.RED);
-		fieldOfTurnsPanel = new FieldPanel(FIELD_PANEL_SIZE_WIDTH, 
-				FIELD_PANEL_SIZE_HEIGHT, fieldOfTurns);
+		fieldOfTurnsPanel = new FieldPanel(VeiwConstants.DEFAULT_FIELD_PANEL_WIDTH, 
+				VeiwConstants.DEFAULT_FIELD_PANEL_HEIGHT, fieldOfTurns);
 		
-		fieldOfShipsPanel = new FieldPanel(FIELD_PANEL_SIZE_WIDTH, 
-				FIELD_PANEL_SIZE_HEIGHT, fieldOfShips);
+		fieldOfShipsPanel = new FieldPanel(VeiwConstants.DEFAULT_FIELD_PANEL_WIDTH, 
+				VeiwConstants.DEFAULT_FIELD_PANEL_HEIGHT, fieldOfShips);
 		
 		init();
 	}
@@ -37,9 +39,7 @@ public class MainPanel extends JPanel{
 	private void init(){
 		this.setLayout(new FlowLayout());
 		this.add(fieldOfTurnsPanel);
-		this.add(fieldOfShipsPanel);
-		//this.add(new JPanel());
-		
+		this.add(fieldOfShipsPanel);		
 	}
 
 	public void setFieldOfTurnsPanel(JPanel fieldOfTurnsPanel) {
@@ -50,7 +50,13 @@ public class MainPanel extends JPanel{
 		this.fieldOfShipsPanel = fieldOfShipsPanel;
 	}
 	
-	
+	public JPanel getFieldOfTurnsPanel() {
+		return fieldOfTurnsPanel;
+	}
+
+	public JPanel getFieldOfShipsPanel() {
+		return fieldOfShipsPanel;
+	}
 	
 	
 

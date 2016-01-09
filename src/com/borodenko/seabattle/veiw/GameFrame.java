@@ -20,13 +20,14 @@ public class GameFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		
+		initMap();
+		initSet();
 		
 		mainPanel = new MainPanel(DEFAULT_WIDTH, DEFAULT_HEIGHT,
-				Collections.EMPTY_SET, Collections.EMPTY_SET);
+				Collections.EMPTY_SET, setShips);
 		
 		add(mainPanel);
 		setVisible(true);
-	//	pack();
 		
 	}
 	
@@ -35,8 +36,7 @@ public class GameFrame extends JFrame{
 		ship1.setDeckSize(2);
 		ships = new HashMap<>();
 		ships.put(new Cell(1, 1), ship1);
-		ships.put(new Cell(1, 2), ship1);
-		
+		ships.put(new Cell(1, 2), ship1);		
 	}
 	
 	private void initSet(){

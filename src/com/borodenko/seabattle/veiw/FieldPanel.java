@@ -35,9 +35,45 @@ public class FieldPanel extends JPanel{
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(Color.GREEN);
-		g.fillRect(0, 0, sizeWidth, sizeHeight);		
 		
+		g.setColor(Color.GREEN);
+		g.fillRect(0, 0, sizeWidth, sizeHeight);
+		
+		drawField(g);
+		drawGrid(g);		
+	}
+
+
+	private void drawField(Graphics g) {
+		int stepWidth = (sizeWidth / 10);
+		int stepHeight = (sizeHeight / 10);
+		for(Cell cell : fieldOfShips) {
+			switch(cell.getStatus()) {
+				case ALIVE_SHIP : {
+					g.setColor(Color.GREEN);
+					break;
+				}
+				case EMPTY : {
+					g.setColor(Color.BLUE);
+					break;
+				}
+				case MISS : {
+					g.setColor(Color.GRAY);
+					break;
+				}
+				case DESTROYED_SHIP : {
+					g.setColor(Color.RED);
+					break;
+				}
+			}
+			int realY = cell.getY() * stepHeight;
+			int realX = cell.getX() * stepWidth;
+			g.fillRect(realX, realY, stepWidth, stepHeight);
+		}
+	}
+
+	private void drawGrid(Graphics g) {
+		//create grid
 		int step = (sizeWidth / 10);
 		for(int i = 0; i < sizeWidth; i += step) {
 			g.setColor(Color.BLACK);
@@ -48,8 +84,6 @@ public class FieldPanel extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawLine(0, i, sizeWidth, i);			
 		}
-		
-		
 	}
 	
 

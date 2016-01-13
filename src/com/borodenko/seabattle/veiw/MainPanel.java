@@ -1,6 +1,5 @@
 package com.borodenko.seabattle.veiw;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -12,20 +11,15 @@ import com.borodenko.seabattle.constants.VeiwConstants;
 import com.borodenko.seabattle.model.Cell;
 
 public class MainPanel extends JPanel{
-	private int sizeWidth;
-	private int sizeHeight;
 	private JPanel fieldOfTurnsPanel;
 	private JPanel fieldOfShipsPanel;
-	
-
 	
 	
 	public MainPanel(int sizeWidth, int sizeHeight, 
 			Set<Cell>fieldOfTurns, Set<Cell>fieldOfShips){
 		
-		this.sizeWidth = sizeWidth;
-		this.sizeHeight = sizeHeight;
-		this.setPreferredSize(new Dimension(sizeWidth, sizeHeight));
+		this.setPreferredSize(new Dimension(VeiwConstants.DEFAULT_FRAME_WIDTH, 
+				VeiwConstants.DEFAULT_FRAME_HEIGHT));
 		this.setBackground(Color.RED);
 		fieldOfTurnsPanel = new FieldPanel(VeiwConstants.DEFAULT_FIELD_PANEL_WIDTH, 
 				VeiwConstants.DEFAULT_FIELD_PANEL_HEIGHT, fieldOfTurns);

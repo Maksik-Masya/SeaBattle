@@ -1,5 +1,7 @@
 package com.borodenko.seabattle.model;
 
+import com.borodenko.seabattle.model.type.CellStatus;
+
 public class Cell {
 	private int x;
 	private int y;

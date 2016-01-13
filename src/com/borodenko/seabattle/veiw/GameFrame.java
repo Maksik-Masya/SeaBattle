@@ -1,62 +1,45 @@
 package com.borodenko.seabattle.veiw;
 
+import java.awt.event.MouseListener;
 import java.util.*;
 
 import javax.swing.JFrame;
 
+import com.borodenko.seabattle.constants.VeiwConstants;
 import com.borodenko.seabattle.model.Cell;
-import com.borodenko.seabattle.model.CellStatus;
 import com.borodenko.seabattle.model.Ship;
+import com.borodenko.seabattle.model.type.CellStatus;
 
 public class GameFrame extends JFrame{
-	private final int DEFAULT_WIDTH = 750;
-	private final int DEFAULT_HEIGHT = 450;
-	private MainPanel mainPanel;
-	private Set<Cell> setShips;
 	
+	private MainPanel mainPanel;
+	private Set<Cell> fieldShips;
 	private Map<Cell, Ship> ships;
 	
-	public GameFrame() {
+	public GameFrame(Set<Cell> fieldShips) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		setTitle("Sea Battle");
+		setSize(VeiwConstants.DEFAULT_FRAME_WIDTH,
+				VeiwConstants.DEFAULT_FRAME_HEIGHT);
 		
-		initMap();
-		initSet();
-		
-		mainPanel = new MainPanel(DEFAULT_WIDTH, DEFAULT_HEIGHT,
-				Collections.EMPTY_SET, setShips);
+				
+		mainPanel = new MainPanel(VeiwConstants.DEFAULT_FRAME_WIDTH,
+				VeiwConstants.DEFAULT_FRAME_HEIGHT,
+				Collections.EMPTY_SET, fieldShips);
 		
 		add(mainPanel);
 		setVisible(true);
 		
 	}
 	
-	private void initMap() {
-		Ship ship1 = new Ship();
-		ship1.setDeckSize(2);
-		ships = new HashMap<>();
-		ships.put(new Cell(1, 1), ship1);
-		ships.put(new Cell(1, 2), ship1);		
+	public void addMouseListenerOnFieldPanel(MouseListener listener) {
+		mainPanel.getFieldOfShipsPanel().addMouseListener(listener);
 	}
 	
-	private void initSet(){
-		setShips = new HashSet<>();
-		for(int i=0; i<10; i++){
-			for(int j=0; j<10; j++){
-				Cell cell = new Cell(i, j);
-				cell.setStatus(CellStatus.EMPTY);
-				setShips.add(cell);
-			}
-		}
-		
-		for (Cell cell : ships.keySet()) {
-			for (Cell cellShip : setShips) {
-				if(cell.equals(cellShip)){
-					cellShip.setStatus(CellStatus.ALIVE_SHIP);
-				}
-			}
-		}
-	}
+	
+	
+	
+
 	
 
 }
